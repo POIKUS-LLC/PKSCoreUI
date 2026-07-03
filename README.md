@@ -20,7 +20,7 @@ cannot run its test suite (UIKit doesn't build for plain macOS); use `xcodebuild
 iOS Simulator destination instead:
 
 ```sh
-xcodebuild test -scheme PKSCoreUI -destination 'platform=iOS Simulator,name=iPhone 16'
+xcodebuild test -scheme PKSCoreUI-Package -destination 'platform=iOS Simulator,name=iPhone 16'
 ```
 
 ## Installation

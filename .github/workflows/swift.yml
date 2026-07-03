@@ -19,4 +19,4 @@ jobs:
           xcode-version: "16.2"
 
       - name: Test
-        run: xcodebuild test -scheme PKSCoreUI -destination 'platform=iOS Simulator,name=iPhone 16'
+        run: xcodebuild test -scheme PKSCoreUI-Package -destination 'platform=iOS Simulator,name=iPhone 16'
