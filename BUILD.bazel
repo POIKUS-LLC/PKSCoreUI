@@ -1,0 +1,37 @@
+load("@rules_apple//apple:ios.bzl", "ios_unit_test")
+load("@rules_swift//swift:swift_library.bzl", "swift_library")
+
+swift_library(
+    name = "PKSCoreUI",
+    module_name = "PKSCoreUI",
+    srcs = glob(["Sources/PKSCoreUI/**/*.swift"]),
+    deps = ["@pkscore//:PKSCore"],
+    visibility = ["//visibility:public"],
+)
+
+swift_library(
+    name = "PKSCoreUITestSupport",
+    module_name = "PKSCoreUITestSupport",
+    srcs = glob(["Sources/PKSCoreUITestSupport/**/*.swift"]),
+    deps = [":PKSCoreUI"],
+    visibility = ["//visibility:public"],
+)
+
+swift_library(
+    name = "PKSCoreUITestsLib",
+    testonly = True,
+    srcs = glob(["Tests/PKSCoreUITests/**/*.swift"]),
+    deps = [
+        ":PKSCoreUI",
+        ":PKSCoreUITestSupport",
+    ],
+)
+
+# UIKit-backed code only resolves under an Apple platform transition, which
+# a bare swift_test (host-run) doesn't apply — ios_unit_test runs in the
+# simulator instead. See ios/README.md.
+ios_unit_test(
+    name = "PKSCoreUITests",
+    minimum_os_version = "16.0",
+    deps = [":PKSCoreUITestsLib"],
+)
