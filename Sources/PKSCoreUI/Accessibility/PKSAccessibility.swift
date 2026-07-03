@@ -52,6 +52,7 @@ public enum PKSAccessibility {
 
 /// Abstracts the system accessibility flags PKSCoreUI reads, so tests can inject
 /// deterministic values instead of depending on the real (test-runner) UIAccessibility state.
+@MainActor
 public protocol PKSAccessibilityEnvironmentProviding {
     func isReduceMotionEnabled() -> Bool
     func isReduceTransparencyEnabled() -> Bool
